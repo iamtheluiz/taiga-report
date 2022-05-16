@@ -4,12 +4,16 @@ const pdf = require('html-pdf')
 const path = require('path')
 const { xml2json } = require('xml-js')
 
-const outdir = path.relative(__dirname, 'out')
+const outdir = path.relative(__dirname, process.env.REPORT_OUTPUT)
+
+if (!fs.existsSync(outdir)) {
+  fs.mkdirSync(outdir)
+}
 
 const style = fs.readFileSync('./assets/styles.css').toString()
-const sonar = fs.readFileSync('./resources/SonarQubeBuildSummary.md').toString()
-const gitLog = fs.readFileSync('./resources/git-log.txt').toString()
-const testsXML = fs.readFileSync('./resources/junit.xml', 'utf8')
+const sonar = fs.readFileSync(process.env.REPORT_SONAR_FILE).toString()
+const gitLog = fs.readFileSync(process.env.REPORT_GIT_LOG_FILE).toString()
+const testsXML = fs.readFileSync(process.env.REPORT_TESTS_FILE, 'utf8')
 
 let gitLogHTML = ''
 
