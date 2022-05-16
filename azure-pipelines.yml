@@ -17,11 +17,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'ls'
-    workingDirectory: '${System.DefaultWorkingDirectory}'
+    workingDirectory: ${System.DefaultWorkingDirectory}
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '${System.DefaultWorkingDirectory}'
+    SourceFolder: ${System.DefaultWorkingDirectory}
     Contents: '**'
     TargetFolder: ${Build.ArtifactStagingDirectory}
 
