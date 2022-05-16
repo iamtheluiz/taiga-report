@@ -11,7 +11,7 @@ if (!fs.existsSync(outdir)) {
   fs.mkdirSync(outdir)
 }
 
-const style = fs.readFileSync('./assets/styles.css').toString()
+const style = fs.readFileSync(path.join(__dirname, 'assets/styles.css')).toString()
 const sonar = fs.readFileSync(process.env.REPORT_SONAR_FILE).toString()
 const gitLog = fs.readFileSync(process.env.REPORT_GIT_LOG_FILE).toString()
 const testsXML = fs.readFileSync(process.env.REPORT_TESTS_FILE, 'utf8')
@@ -139,7 +139,7 @@ const html = `
 </html>
 `
 
-fs.writeFileSync(path.join(outdir, './report.html'), html)
+fs.writeFileSync(path.join(outdir, 'report.html'), html)
 
 const options = {
   type: 'pdf',
@@ -150,5 +150,5 @@ const options = {
 pdf.create(html, options).toBuffer((err, buffer) => {
   if(err) return res.status(500).json(err)
   
-  fs.writeFileSync(path.join(outdir, './report.pdf'), buffer)
+  fs.writeFileSync(path.join(outdir, 'report.pdf'), buffer)
 })
