@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Generate a PDF report",
   "main": "index.js",
+  "bin": {
+    "taiga-report": "./index.js"
+  },
   "repository": "https://github.com/iamtheluiz/taiga-report.git",
   "author": "iamtheluiz <iamtheluiz.dev@gmail.com>",
   "license": "GNU",
