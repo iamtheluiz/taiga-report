@@ -5,7 +5,7 @@ const pdf = require('html-pdf')
 const path = require('path')
 const { xml2json } = require('xml-js')
 
-const outdir = path.relative(__dirname, process.env.REPORT_OUTPUT)
+const outdir = process.env.REPORT_OUTPUT
 
 if (!fs.existsSync(outdir)) {
   fs.mkdirSync(outdir)
