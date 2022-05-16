@@ -77,7 +77,7 @@ const html = `
 <body>
   <h1>Build Report - ${process.env.REPORT_BUILD_NAME}</h1>
   <header>
-    <img src="https://github.com/iamtheluiz/taiga/blob/master/.github/icon.jpg?raw=true" />
+    <img src="${process.env.REPORT_LOGO}" />
     <div class="details">
       <h1>${process.env.REPORT_APPLICATION}</h1>
       <span>${process.env.REPORT_DESCRIPTION}</span>
@@ -105,11 +105,11 @@ const html = `
       <div class="info" style="padding-left: 0px;">
         <ul class="key">
           <li>
-            <span class="percent green">16</span>
+            <span class="percent green">${parseInt(tests.testsuites['_attributes'].tests) - parseInt(tests.testsuites['_attributes'].failures)}</span>
             <span class="choice">Success</span>
           </li>
           <li>
-            <span class="percent red">3</span>
+            <span class="percent red">${parseInt(tests.testsuites['_attributes'].failures)}</span>
             <span class="choice">Failed</span>
           </li>
         </ul>
@@ -148,7 +148,7 @@ const options = {
 }
 
 pdf.create(html, options).toBuffer((err, buffer) => {
-  if(err) return res.status(500).json(err)
+  if(err) return console.log(err)
   
   fs.writeFileSync(path.join(outdir, 'report.pdf'), buffer)
 })
