@@ -14,9 +14,14 @@ steps:
     command: 'install'
     workingDir: '.'
 
+- task: CmdLine@2
+  inputs:
+    script: 'ls'
+    workingDirectory: '${System.DefaultWorkingDirectory}'
+
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '.'
+    SourceFolder: '${System.DefaultWorkingDirectory}'
     Contents: '**'
     TargetFolder: ${Build.ArtifactStagingDirectory}
 
