@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="19" failures="3" errors="0" time="7.368">
+  <testsuite name="Create command use case" errors="0" failures="0" skipped="0" timestamp="2022-05-01T23:24:17" time="6.312" tests="2">
+    <testcase classname="Create command use case should create a new command" name="Create command use case should create a new command" time="0.009">
+    </testcase>
+    <testcase classname="Create command use case should not create a duplicated command" name="Create command use case should not create a duplicated command" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Stop recognition use case" errors="0" failures="0" skipped="0" timestamp="2022-05-01T23:24:17" time="6.326" tests="1">
+    <testcase classname="Stop recognition use case should stop recognition" name="Stop recognition use case should stop recognition" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Start recognition use case" errors="0" failures="0" skipped="0" timestamp="2022-05-01T23:24:17" time="6.356" tests="2">
+    <testcase classname="Start recognition use case should start the recognition" name="Start recognition use case should start the recognition" time="0.004">
+    </testcase>
+    <testcase classname="Start recognition use case should recognize a command" name="Start recognition use case should recognize a command" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Remove command use case" errors="0" failures="0" skipped="0" timestamp="2022-05-01T23:24:17" time="6.371" tests="3">
+    <testcase classname="Remove command use case should remove a command" name="Remove command use case should remove a command" time="0.005">
+    </testcase>
+    <testcase classname="Remove command use case should return a id format error" name="Remove command use case should return a id format error" time="0.002">
+    </testcase>
+    <testcase classname="Remove command use case should return a not found id error" name="Remove command use case should return a not found id error" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Get command list use case" errors="0" failures="0" skipped="0" timestamp="2022-05-01T23:24:17" time="6.452" tests="3">
+    <testcase classname="Get command list use case should return a empty array" name="Get command list use case should return a empty array" time="0.003">
+    </testcase>
+    <testcase classname="Get command list use case should not return deleted commands" name="Get command list use case should not return deleted commands" time="0.001">
+    </testcase>
+    <testcase classname="Get command list use case should return all commands" name="Get command list use case should return all commands" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Execute command use case" errors="0" failures="3" skipped="0" timestamp="2022-05-01T23:24:17" time="6.511" tests="8">
+    <testcase classname="Execute command use case should throw a invalid command type error" name="Execute command use case should throw a invalid command type error" time="0.003">
+    </testcase>
+    <testcase classname="Execute command use case should throw a command not found error" name="Execute command use case should throw a command not found error" time="0.001">
+    </testcase>
+    <testcase classname="Execute command use case should run a website command" name="Execute command use case should run a website command" time="0">
+    </testcase>
+    <testcase classname="Execute command use case should run a program command" name="Execute command use case should run a program command" time="0.001">
+    </testcase>
+    <testcase classname="Execute command use case should run a shell command" name="Execute command use case should run a shell command" time="0.001">
+    </testcase>
+    <testcase classname="Execute command use case should run stop recognition default command" name="Execute command use case should run stop recognition default command" time="0.001">
+      <failure>Error: Stop recognition default command not found!
+    at C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:169:13
+    at step (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:33:23)
+    at Object.next (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:14:53)
+    at fulfilled (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)</failure>
+    </testcase>
+    <testcase classname="Execute command use case should run go to tray default command" name="Execute command use case should run go to tray default command" time="0">
+      <failure>Error: Go to tray default command not found!
+    at C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:195:13
+    at step (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:33:23)
+    at Object.next (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:14:53)
+    at fulfilled (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)</failure>
+    </testcase>
+    <testcase classname="Execute command use case should run return to window default command" name="Execute command use case should run return to window default command" time="0">
+      <failure>Error: Return to window default command not found!
+    at C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:223:13
+    at step (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:33:23)
+    at Object.next (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:14:53)
+    at fulfilled (C:\Users\iamth\workspace\taiga\electron\usecases\execute-command.spec.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

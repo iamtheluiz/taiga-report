@@ -1,0 +1,154 @@
+﻿* 23789a7 (HEAD -> master, origin/master, origin/HEAD) fix: variable name
+* cac6f75 Update azure-pipelines.yml for Azure Pipelines
+* 0a937c0 Set azure-pipelines.yml displayNames
+* 907c5c6 Update azure-pipelines.yml for Azure Pipelines
+* ebcce96 Update azure-pipelines.yml for Azure Pipelines
+* 3a4e838 Update azure-pipelines.yml for Azure Pipelines
+* 2201551 Update azure-pipelines.yml for Azure Pipelines
+* d9eb319 Update azure-pipelines.yml for Azure Pipelines
+* a4b0eac Update azure-pipelines.yml for Azure Pipelines
+* c6e77f4 Update azure-pipelines.yml for Azure Pipelines
+* c823fc6 Update azure-pipelines.yml for Azure Pipelines
+*   ac1b54f Merge branch 'master' of https://github.com/iamtheluiz/taiga
+|\  
+| * b8eecaf Update azure-pipelines.yml for Azure Pipelines
+| * 1c3d054 Update azure-pipelines.yml for Azure Pipelines
+| * c919b50 Update azure-pipelines.yml for Azure Pipelines
+| * c769bbe Update azure-pipelines.yml for Azure Pipelines
+| * 18eff49 Update azure-pipelines.yml for Azure Pipelines
+| * 2332a70 Update azure-pipelines.yml for Azure Pipelines
+| * f030cd4 Update azure-pipelines.yml for Azure Pipelines
+| * d16ef3a Update azure-pipelines.yml for Azure Pipelines
+| * ddb071c Update azure-pipelines.yml for Azure Pipelines
+| * fa2a117 Update azure-pipelines.yml for Azure Pipelines
+| * ede2ff6 Update azure-pipelines.yml for Azure Pipelines
+* | ec601f0 fix: variables
+|/  
+* 2cc2b15 fix: add package:ci script
+* f4d6ee8 test: for the science
+| * 6a47d64 (refs/stash) WIP on master: 91245bc Merge branch 'master' of https://github.com/iamtheluiz/taiga
+|/| 
+| * f127a94 index on master: 91245bc Merge branch 'master' of https://github.com/iamtheluiz/taiga
+|/  
+*   91245bc Merge branch 'master' of https://github.com/iamtheluiz/taiga
+|\  
+| * 0398c82 Update azure-pipelines.yml for Azure Pipelines
+* | bb817b8 feat: add environment variables
+|/  
+* 456837c Update azure-pipelines.yml for Azure Pipelines
+* d67e945 fix: remove --ci flag from jest script
+* e221dbf Update azure-pipelines.yml for Azure Pipelines
+* 0597474 Update azure-pipelines.yml for Azure Pipelines
+* 7e4a8ae Update azure-pipelines.yml for Azure Pipelines
+*   f253dfd Merge branch 'master' of https://github.com/iamtheluiz/taiga
+|\  
+| * a880632 Update azure-pipelines.yml for Azure Pipelines
+| | * eb1ba55 (origin/default-commands) feat: add package:ci script
+| |/  
+|/|   
+* | f4e3f6a feat(docs): open github page on release version
+|/  
+* 12b084b Set up CI with Azure Pipelines
+*   5d4ba45 Merge pull request #11 from iamtheluiz/default-commands
+|\  
+| * 87b33c0 feat: save last changes
+| * 1f44287 feat: create returnToWindow default command
+| * d66ce5c feat: create application tray and sendToTray default command
+| * e590c6a feat(electron/providers): implement executeDefaultCommand on MainCommandExecutionProvider
+| * 1ff4a21 fix(electron/usecases): change Command entity usage
+| * 0af998b feat(electron/etities): remove Command default attribute
+| * bd04b78 fix(actions): remove extra workflow
+| *   b205cc0 Merge branch 'default-commands' of https://github.com/iamtheluiz/taiga into default-commands
+| |\  
+| | * b9d6331 feat(actions): add github actions workflow
+| * |   50f365e Merge branch 'master' of https://github.com/iamtheluiz/taiga into default-commands
+| |\ \  
+| |/ /  
+|/| |   
+* | | 65f7428 feat(actions): add Github actions node workflow
+| * | bf3dc76 feat(electron/handlers): handle Recognition StopRecognition
+| * | 45936ba feat(electron/usecases): create StopRecognition
+| * | 5020a3c fix(electron): remove old files
+| * | 208d171 fix(electron/handlers): handle recognition GetStatus
+| * | b7b7fd2 feat(electron): initialize Recognition
+| * | 9066b47 feat(electron/providers): implement TaigaRecognitionProvider
+| * | 5460297 feat(electron/handlers): create RecognitionHandler
+| * | 6c17476 feat(electron/userases): create StartRecognition usecase
+| * | 9bb2587 feat(electron/repositories): create json-commands-repository
+| * | 47a7214 fix(electron/providers): executeWebsite change command content
+| * | c67d88f feat(electron/providers): create RecognitionProvider interface
+| * | 83dc721 feat(recognition): output command id
+| |/  
+| * a143725 refactor(electron/infra): create infra initialize file
+| * c8414e5 fix(client): maintain old content on empty dialog file
+| * 16b4633 fix(client): change dialog communication
+| * 06a81d7 feat(electron/handlers): create ElectronHandler
+| * 4fbb970 fix(types): remove types folder
+| * 640d94e feat(electron/infra): handle command execute
+| * fe77dac feat(electron/usecases): create ExecuteCommand usecase
+| * 3df2b61 feat(electron/providers): implement MainCommandExecutionProvider
+| * 1f7ae14 feat(electron/providers): create CommandExecutionProvider interface
+| * cc242f0 fix(electron/handle): use CreateCommand usecase in handleCreateCommand
+| * e189367 fix(electron/usecases): remove intentional error
+| * ed0e9cd docs: urgent backup
+| * 189e0eb refactor: change logger location
+| * 8463fb9 feat: add socket.io server
+| * 476774d feat: create CommandHandler
+| * 0451a7c refactor: change InMemoryCommandsRepository location
+| * d32e426 feat: create CommunicationProvider
+| * 217e063 feat: create GetCommandList usecase
+| * 1c42563 feat: implements list in CommandsRepository
+| * 3bf50db feat: create RemoveCommand usecase
+| * acc9c61 feat: implement CommandRepository removeById
+| * 05e3ae2 feat: implements CreateCommand usecase
+| * 1ec4682 feat: implement InMemoryCommandsRepository
+| * 28d99e2 refactor: create CommandsRepository interface
+| * 81b865e refactor: create Command entity
+| * 1ab955e refactor: change paths to config file
+| * 1cbf9a4 refactor: start code change
+| * b7bde58 feat(electron): create default command stopRecognition
+| * 934285c fix(pages/newcommand): get selected program from dialog
+| * b7570b6 feat: change communication to socket.io
+| * 2cf1a77 refactor(electron): create Window lib
+| * bf09217 feat(electron/config): add default command file creation
+|/  
+*   96ffc3f Merge pull request #4 from iamtheluiz/feat-components
+|\  
+| * 63779b5 (origin/feat-components) refactor(components/taigaimagesmodal): move modal code to a component
+| * 80054ab refactor(components/commanditem): move code to a component
+|/  
+*   a52c143 Merge pull request #3 from iamtheluiz/feat-command-context
+|\  
+| * 9e3d669 (origin/feat-command-context) refactor(contexts/command): move refresh and remove commands
+| * c742950 feat(contexts/command): create command context
+|/  
+* b85eaf6 refactor(communication): create class to handle ipcMain communications
+* 9f32525 fix(recognition): check recognition status before start
+* eebe4ae fix(recognition): check recognition status before stop
+* 1127674 feat(recognition): create logs
+* d12d4d4 fix(commitlint): change command call on husky
+* cc9d917 chore: add commitizen to project
+* f180b6e chore: add husky, lint-staged and commitlint
+* 4a7337f fix: code style with eslint and prettier
+* a5a3326 feat: add logger and Command logs
+* ac38d11 feat: update production package
+* 884f2ed refactor: create Command class
+* b1b5343 refactor: create Recognition class
+* 35806ff feat: change icons according to command type
+* d9d2882 docs: update README
+* c0f3ce0 docs: update README
+* 4c593ad feat: create new command on interface
+* 7081d69 fix: change image cursor and modal background opactiy
+* 77bd89d feat: create script to update taigaImages
+* c950df7 refactor: emit recognition status
+* 32b0699 feat: add start and stop command
+* e266c5e feat: change interface and add command list
+* 05829aa feat: execute shell commands
+* a0a66d9 feat: add Speech Recognition with C#
+* 012c440 feat: change taiga image and create Modal component
+* 2c6509e feat: add icon and remove picovoice
+* 90d9095 fix: button path
+* 51b7653 feat: add application header and create pages folder
+* 066b314 feat: add taiga images
+* de23d2f urgent: save current state
+* 65e5e17 Initial commit
