@@ -17,13 +17,13 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'ls'
-    workingDirectory: ${Build.SourcesDirectory}
+    workingDirectory: $(Build.SourcesDirectory)
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: ${Build.SourcesDirectory}
+    SourceFolder: $(Build.SourcesDirectory)
     Contents: '**'
-    TargetFolder: ${Build.ArtifactStagingDirectory}
+    TargetFolder: $(Build.ArtifactStagingDirectory)
 
 - task: PublishBuildArtifacts@1
   inputs:
