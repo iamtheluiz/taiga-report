@@ -139,7 +139,7 @@ const html = `
 </html>
 `
 
-fs.writeFileSync(path.join(outdir, 'report.html'), html)
+fs.writeFileSync(path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.html`), html)
 
 const options = {
   type: 'pdf',
@@ -150,5 +150,5 @@ const options = {
 pdf.create(html, options).toBuffer((err, buffer) => {
   if(err) return console.log(err)
   
-  fs.writeFileSync(path.join(outdir, 'report.pdf'), buffer)
+  fs.writeFileSync(path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.pdf`), buffer)
 })
