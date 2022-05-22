@@ -5,7 +5,13 @@ const pdf = require('html-pdf')
 const path = require('path')
 const { xml2json } = require('xml-js')
 
+const createSonarSection = require('./utils/createSonarSection')
+const createTestsSection = require('./utils/createTestsSection')
+const createGitLogSection = require('./utils/createGitLogSection')
+
 const outdir = process.env.REPORT_OUTPUT
+const htmlFilePath = path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.html`)
+const pdfFilePath = path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.pdf`)
 
 if (!fs.existsSync(outdir)) {
   fs.mkdirSync(outdir)
@@ -16,49 +22,7 @@ const sonar = fs.readFileSync(process.env.REPORT_SONAR_FILE).toString()
 const gitLog = fs.readFileSync(process.env.REPORT_GIT_LOG_FILE).toString()
 const testsXML = fs.readFileSync(process.env.REPORT_TESTS_FILE, 'utf8')
 
-let gitLogHTML = ''
-
-gitLog.split(/\r?\n/).forEach(line => gitLogHTML += `${line}<br />\n`)
-
 const tests = JSON.parse(xml2json(testsXML, { compact: true, spaces: 2 }))
-
-let testsHTML = ''
-
-tests.testsuites.testsuite.forEach(testsuite => {
-  const testcases = Array.isArray(testsuite.testcase) ? testsuite.testcase : Array(testsuite.testcase);
-
-  testsHTML += `
-    <div class="suite">
-      <table>
-        <tbody>
-          <tr>
-            <td>${parseInt(testsuite['_attributes'].failures) > 0 ? `<div class="status failed">F</div>` : `<div class="status success">S</div>`}</td>
-            <td style="padding-left: 8px;">
-              <strong style="font-size: 18px;">${testsuite['_attributes'].name}</strong><br />
-              <span>${testsuite['_attributes'].tests} Suite Tests</span><br />
-              <span>${testsuite['_attributes'].failures} Suite Failures</span>
-            </td>
-          </tr>
-        </tbody>
-      </table><br />
-      <strong>Test Cases:</strong>
-      <ul>`
-
-      testcases.forEach(testcase => testsHTML += `
-        <li>${testcase['_attributes'].name}
-          ${testcase.failure && testcase.failure._text ? `
-            <ul>
-              <li>${testcase.failure._text}</li>
-            </ul>
-          ` : ''}
-        </li>
-      `)
-
-  testsHTML += `
-      </ul>
-    </div>
-  `
-})
 
 // Gerar um HTML
 const html = `
@@ -83,72 +47,27 @@ const html = `
       <span>${process.env.REPORT_DESCRIPTION}</span>
     </div>
   </header>
-  <section>
-    <h2>Sonar</h2>
-    ${sonar}
-  </section>
-  
-  <section>
-    <h2>Tests</h2>
-    
-    <div class="summary">
-      <div class="info">
-        <strong>${tests.testsuites['_attributes'].tests}</strong><br />
-        <span>Total tests</span>
-      </div>
-      <div class="info" style="padding-left: 0px;">
-        <div style="width: 32px; height: 120px;">
-          <div style="background: #6fdb6f; width: 100%; height: ${((parseInt(tests.testsuites['_attributes'].tests) - parseInt(tests.testsuites['_attributes'].failures))/parseInt(tests.testsuites['_attributes'].tests)*100)}%;"></div>
-          <div style="background: #F15854; width: 100%; height: ${100 - ((parseInt(tests.testsuites['_attributes'].tests) - parseInt(tests.testsuites['_attributes'].failures))/parseInt(tests.testsuites['_attributes'].tests)*100)}%;"></div>
-        </div>
-      </div>
-      <div class="info" style="padding-left: 0px;">
-        <ul class="key">
-          <li>
-            <span class="percent green">${parseInt(tests.testsuites['_attributes'].tests) - parseInt(tests.testsuites['_attributes'].failures)}</span>
-            <span class="choice">Success</span>
-          </li>
-          <li>
-            <span class="percent red">${parseInt(tests.testsuites['_attributes'].failures)}</span>
-            <span class="choice">Failed</span>
-          </li>
-        </ul>
-      </div>
-      <div class="info">
-        <strong>${parseFloat((parseInt(tests.testsuites['_attributes'].tests) - parseInt(tests.testsuites['_attributes'].failures))/parseInt(tests.testsuites['_attributes'].tests)*100).toFixed(2)}%</strong><br />
-        <span>Pass percentage</span>
-      </div>
-      <div class="info">
-        <strong>${tests.testsuites['_attributes'].time}s</strong><br />
-        <span>Run Duration</span>
-      </div>
-    </div>
-    
-    ${testsHTML}
-  </section>
-  
-  <section>
-    <h2>GIT Complete Log</h2>
-    <div class="codeContent">
-      <code>
-        ${gitLogHTML}
-      </code>
-    </div>
-  </section>
+  ${createSonarSection(sonar)}
+  ${createTestsSection(tests)}
+  ${createGitLogSection(gitLog)}
 </body>
 </html>
 `
 
-fs.writeFileSync(path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.html`), html)
+try {
+  fs.writeFileSync(htmlFilePath, html)
 
-const options = {
-  type: 'pdf',
-  format: 'A4',
-  orientation: 'portrait'
+  const options = {
+    type: 'pdf',
+    format: 'A4',
+    orientation: 'portrait'
+  }
+
+  pdf.create(html, options).toBuffer((err, buffer) => {
+    if(err) return console.log(err)
+    
+    fs.writeFileSync(pdfFilePath, buffer)
+  })
+} catch (error) {
+  console.log(error)
 }
-
-pdf.create(html, options).toBuffer((err, buffer) => {
-  if(err) return console.log(err)
-  
-  fs.writeFileSync(path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.pdf`), buffer)
-})
