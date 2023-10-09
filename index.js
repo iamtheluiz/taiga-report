@@ -1,26 +1,19 @@
 #! /usr/bin/env node
 require('dotenv').config()
 const fs = require('fs')
-const pdf = require('html-pdf')
 const path = require('path')
 const { xml2json } = require('xml-js')
+const convertHTMLToPDF = require("pdf-puppeteer");
 
-const createSonarSection = require('./utils/createSonarSection')
-const createTestsSection = require('./utils/createTestsSection')
-const createGitLogSection = require('./utils/createGitLogSection')
+const { outdir, testsXML, style, sonar, gitLog, htmlFilePath, pdfFilePath } = require('./config')
 
-const outdir = process.env.REPORT_OUTPUT
-const htmlFilePath = path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.html`)
-const pdfFilePath = path.join(outdir, `report-${process.env.REPORT_BUILD_NAME}.pdf`)
+const createSonarSection = require('./lib/createSonarSection')
+const createTestsSection = require('./lib/createTestsSection')
+const createGitLogSection = require('./lib/createGitLogSection')
 
 if (!fs.existsSync(outdir)) {
   fs.mkdirSync(outdir)
 }
-
-const style = fs.readFileSync(path.join(__dirname, 'assets/styles.css')).toString()
-const sonar = fs.readFileSync(process.env.REPORT_SONAR_FILE).toString()
-const gitLog = fs.readFileSync(process.env.REPORT_GIT_LOG_FILE).toString()
-const testsXML = fs.readFileSync(process.env.REPORT_TESTS_FILE, 'utf8')
 
 const tests = JSON.parse(xml2json(testsXML, { compact: true, spaces: 2 }))
 
@@ -54,20 +47,11 @@ const html = `
 </html>
 `
 
-try {
-  fs.writeFileSync(htmlFilePath, html)
-
-  const options = {
-    type: 'pdf',
-    format: 'A4',
-    orientation: 'portrait'
-  }
-
-  pdf.create(html, options).toBuffer((err, buffer) => {
-    if(err) return console.log(err)
-    
-    fs.writeFileSync(pdfFilePath, buffer)
-  })
-} catch (error) {
-  console.log(error)
+const options = {
+  format: 'A4',
+  printBackground: true
 }
+
+convertHTMLToPDF(html, (pdf) => {
+  fs.writeFileSync(pdfFilePath, pdf)
+}, options);
